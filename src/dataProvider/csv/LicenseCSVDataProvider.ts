@@ -1,9 +1,12 @@
-import { promisify } from "util";
-import { readFile as readFileCallback } from "fs";
+import { createReadStream } from "fs";
+import csv from "csv-parser";
 import { NotFoundError } from "../NotFoundError";
 import { DataProviderInternalError } from "../DataProviderInternalError";
 
-const readFile = promisify(readFileCallback);
+interface Line {
+  packageName: string;
+  license: string;
+}
 
 export class LicenseCSVDataProvider {
   private packageCache: Record<string, string> = {};
@@ -30,12 +33,15 @@ export class LicenseCSVDataProvider {
 
   private async loadData(): Promise<void> {
     try {
-      const file = await readFile("./data/licenses.csv");
-      const lines = file.toString().split("\n");
-      for (const line of lines) {
-        const [packageName, license] = line.split(",");
-        this.packageCache[packageName] = license;
-      }
+      await new Promise<void>((resolve, reject) => {
+        createReadStream("./data/licenses.csv")
+          .pipe(csv(["packageName", "license"]))
+          .on("data", ({ packageName, license }: Line) => {
+            this.packageCache[packageName] = license;
+          })
+          .on("end", resolve)
+          .on("error", reject);
+      });
     } catch (e) {
       console.error(e);
       throw new DataProviderInternalError();
