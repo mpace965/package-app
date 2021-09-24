@@ -2,15 +2,13 @@ import { createReadStream } from "fs";
 import csv from "csv-parser";
 import { NotFoundError } from "../NotFoundError";
 import { DataProviderInternalError } from "../DataProviderInternalError";
-
-export interface License {
-  packageName: string;
-  license: string;
-}
+import { License } from "../../entity/License";
 
 export class LicenseCSVDataProvider {
   private packageCache: Record<string, string> = {};
   private cached: boolean = false;
+
+  constructor(private path: string) {}
 
   public async read(packageName: string): Promise<License> {
     await this.loadIfNotCached();
@@ -34,7 +32,7 @@ export class LicenseCSVDataProvider {
   private async loadData(): Promise<void> {
     try {
       await new Promise<void>((resolve, reject) => {
-        createReadStream("./data/licenses.csv")
+        createReadStream(this.path)
           .pipe(csv(["packageName", "license"]))
           .on("data", ({ packageName, license }: License) => {
             this.packageCache[packageName] = license;
