@@ -1216,6 +1216,13 @@
   resolved "https://registry.yarnpkg.com/@types/prettier/-/prettier-2.3.2.tgz#fc8c2825e4ed2142473b4a81064e6e081463d1b3"
   integrity sha512-eI5Yrz3Qv4KPUa/nSIAi0h+qX0XyewOliug5F2QAtuRg6Kjg6jfmxe1GIwoIRhZspD1A0RP8ANrPwvEXXtRFog==
 
+"@types/restify-errors@^4.3.4":
+  version "4.3.4"
+  resolved "https://registry.yarnpkg.com/@types/restify-errors/-/restify-errors-4.3.4.tgz#e7830098c891e9dc91f24b7cd41c0e5d79246730"
+  integrity sha512-GGPw1jXCh19rNmFwCJITh3p9OLrDK4UyRIcxg6Q2w83/8m8D1nAxCpgwYjtFLEpn0u5dQazsR4KKHmiaLNM4AQ==
+  dependencies:
+    "@types/verror" "*"
+
 "@types/restify@^8.5.2":
   version "8.5.2"
   resolved "https://registry.yarnpkg.com/@types/restify/-/restify-8.5.2.tgz#e4679d5ee7852f2a123b3e0c92ee1f72515c8a25"
@@ -1237,6 +1244,11 @@
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/@types/stack-utils/-/stack-utils-2.0.1.tgz#20f18294f797f2209b5f65c8e3b5c8e8261d127c"
   integrity sha512-Hl219/BT5fLAaz6NDkSuhzasy49dwQS/DSdu4MdggFB8zcXv7vflBI3xp7FEmkmdDkBUI2bPUNeMttp2knYdxw==
+
+"@types/verror@*":
+  version "1.10.5"
+  resolved "https://registry.yarnpkg.com/@types/verror/-/verror-1.10.5.tgz#2a1413aded46e67a1fe2386800e291123ed75eb1"
+  integrity sha512-9UjMCHK5GPgQRoNbqdLIAvAy0EInuiqbW0PBMtVP6B5B2HQJlvoJHM+KodPZMEjOa5VkSc+5LH7xy+cUzQdmHw==
 
 "@types/yargs-parser@*":
   version "20.2.1"

@@ -1,6 +1,6 @@
 import { createReadStream } from "fs";
 import csv from "csv-parser";
-import { NotFoundError } from "../NotFoundError";
+import { DataProviderNotFoundError } from "../DataProviderNotFoundError";
 import { DataProviderInternalError } from "../DataProviderInternalError";
 import { License } from "../../entity/License";
 
@@ -19,7 +19,7 @@ export class LicenseCSVDataProvider {
       return { packageName, license };
     }
 
-    throw new NotFoundError();
+    throw new DataProviderNotFoundError();
   }
 
   private async loadIfNotCached(): Promise<void> {
